@@ -20,7 +20,7 @@ def clear():
 def hangman():
     word = get_valid_word(words).upper()
     word_letters = set(word)
-    alphabet = (set(string.ascii_uppercase))
+    alphabet = set(string.ascii_uppercase)
     used_letters = set()
     incorrect_guesses = set()
     tries = 0
@@ -47,7 +47,7 @@ def hangman():
             else:
                 incorrect_guesses.add(user_letter)
                 tries = len(incorrect_guesses)
-                hman = hangman_list[tries-1]
+                hman = hangman_list[tries - 1]
         
         elif user_letter in used_letters:
             message = '\n\nYou already guessed that word...\tTry again!'
@@ -63,7 +63,7 @@ def hangman():
         print(f'The word: {"".join(word_list)}')
         print(f'\nYou have used: {", ".join(used_letters)}')
         print(f'Incorrect guesses: {", ".join(incorrect_guesses)}')
-        print(f'You have {8-tries} tries left.')
+        print(f'The Word Was: {word}')
         print('\n\nCongo!! You Got It')
     else:
         clear()
@@ -78,6 +78,18 @@ def hangman():
         
     input('Press the enter key to end <3')
         
-user_input = input('Press the enter key!!')
+input('Press the enter key!!')
 print('\n\n')
-hangman()
+
+play_again = True
+while play_again:
+    hangman()
+    clear()
+    a = input('\nPlay Again? y/n').upper()
+    if a == 'Y':
+        play_again = True
+    elif a == 'N':
+        play_again = False
+    else:
+        print('Incorrect Input!\nGAME OVER')
+        break
